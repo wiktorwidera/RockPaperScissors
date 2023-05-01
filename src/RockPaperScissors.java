@@ -3,6 +3,7 @@ public class RockPaperScissors {
         GameHelper gameHelper = new GameHelper();
 
         gameHelper.initializeGame();
+        gameHelper.gameplay();
         gameHelper.summarizeGame();
     }
 }
