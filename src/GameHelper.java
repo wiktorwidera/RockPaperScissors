@@ -17,8 +17,6 @@ public class GameHelper {
         while (true) {
             showMessageToEnterChoice();
             String userChoice = readUserChoice();
-            Sign computerSign = Sign.generateRandomSign();
-            Sign userSign;
 
             computer.setPlayerSign(Sign.generateRandomSign());
 
