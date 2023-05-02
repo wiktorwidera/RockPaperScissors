@@ -1,6 +1,7 @@
 public class Player {
     private String playerName;
     private int winCounter = 0;
+    private Sign playerSign;
 
     public void setPlayerName(String name) {
         playerName = name;
@@ -15,5 +16,13 @@ public class Player {
 
     public int getWinCounter() {
         return winCounter;
+    }
+
+    public void setPlayerSign(Sign sign) {
+        playerSign = sign;
+    }
+
+    public Sign getPlayerSign() {
+        return playerSign;
     }
 }

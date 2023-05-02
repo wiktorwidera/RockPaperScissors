@@ -19,31 +19,45 @@ public class GameHelper {
             String userChoice = readUserChoice();
             Sign computerSign = Sign.generateRandomSign();
             Sign userSign;
+
+            computer.setPlayerSign(Sign.generateRandomSign());
+
             if (userChoice.toUpperCase().equals("R")) {
-                userSign = Sign.ROCK;
+                user.setPlayerSign(Sign.ROCK);
             } else if (userChoice.toUpperCase().equals("P")) {
-                userSign = Sign.PAPER;
+                user.setPlayerSign(Sign.PAPER);
             } else if (userChoice.toUpperCase().equals("S")) {
-                userSign = Sign.SCISSORS;
+                user.setPlayerSign(Sign.SCISSORS);
             } else {
-                userSign = null;
+                user.setPlayerSign(null);
                 break;
             }
 
-            if (userSign == computerSign) {
-                showWhoWon(null);
-            } else if ((userSign == Sign.ROCK && computerSign == Sign.SCISSORS) ||
-                    (userSign == Sign.PAPER && computerSign == Sign.ROCK) ||
-                    (userSign == Sign.SCISSORS && computerSign == Sign.PAPER)) {
-                user.incrementWinCounter();
-                showWhoWon(user);
-            } else {
-                computer.incrementWinCounter();
-                showWhoWon(computer);
+            Player playerWhoWon = checkWhoWon(user, computer);
+            if (playerWhoWon == null) {
+                showWhoWon(playerWhoWon);
+            }
+            else {
+                playerWhoWon.incrementWinCounter();
+                showWhoWon(playerWhoWon);
             }
 
             gameCounter++;
         }
+    }
+
+    public Player checkWhoWon(Player user, Player computer) {
+        Player playerWhoWon;
+        if (user.getPlayerSign() == computer.getPlayerSign()) {
+            playerWhoWon =  null;
+        } else if ((user.getPlayerSign()  == Sign.ROCK && computer.getPlayerSign() == Sign.SCISSORS) ||
+                (user.getPlayerSign() == Sign.PAPER && computer.getPlayerSign() == Sign.ROCK) ||
+                (user.getPlayerSign() == Sign.SCISSORS && computer.getPlayerSign() == Sign.PAPER)) {
+            playerWhoWon = user;
+        } else {
+            playerWhoWon = computer;
+        }
+        return playerWhoWon;
     }
 
     public void summarizeGame() {
